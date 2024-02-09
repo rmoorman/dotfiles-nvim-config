@@ -32,9 +32,11 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
   {"catppuccin/nvim", name = "catppuccin", priority = 1000},
   {"navarasu/onedark.nvim", priority = 1000 },
+
   {"nvim-telescope/telescope.nvim", tag = "0.1.5", dependencies = {"nvim-lua/plenary.nvim"}},
   {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
   {"nvim-tree/nvim-tree.lua", version="*", lazy = false, dependencies = {"nvim-tree/nvim-web-devicons"}},
+  {"stevearc/oil.nvim", dependencies = { "nvim-tree/nvim-web-devicons" }},
 }
 local opts = {}
 require("lazy").setup(plugins, opts)
@@ -58,7 +60,9 @@ config.setup({
   indent = { enable = true },
 })
 
-
 --- nvim-tree
 require("nvim-tree").setup()
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", {})
+
+--- oil file manager
+require("oil").setup()
