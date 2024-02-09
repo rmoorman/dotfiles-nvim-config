@@ -31,15 +31,19 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup packages
 local plugins = {
   {"catppuccin/nvim", name = "catppuccin", priority = 1000},
+  {"navarasu/onedark.nvim", priority = 1000 },
   {"nvim-telescope/telescope.nvim", tag = "0.1.5", dependencies = {"nvim-lua/plenary.nvim"}},
   {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+  {"nvim-tree/nvim-tree.lua", version="*", lazy = false, dependencies = {"nvim-tree/nvim-web-devicons"}},
 }
 local opts = {}
 require("lazy").setup(plugins, opts)
 
 --- theme
-require("catppuccin").setup()
-vim.cmd.colorscheme("catppuccin")
+-- require("catppuccin").setup()
+-- vim.cmd.colorscheme("catppuccin")
+require("onedark").setup({ style = "warmer" })
+vim.cmd.colorscheme("onedark")
 
 --- telescope
 local builtin = require("telescope.builtin")
@@ -55,3 +59,6 @@ config.setup({
 })
 
 
+--- nvim-tree
+require("nvim-tree").setup()
+vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", {})
