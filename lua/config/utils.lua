@@ -1,6 +1,6 @@
-local utils = {}
+local M = {}
 
-utils.curried_opts = function(opts)
+M.curried_opts = function(opts)
   local factory = function(given_opts)
     local result = {}
     for key, value in pairs(opts or {}) do
@@ -14,4 +14,4 @@ utils.curried_opts = function(opts)
   return factory
 end
 
-return utils
+return M

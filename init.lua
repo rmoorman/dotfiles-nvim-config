@@ -1,4 +1,4 @@
-require("local-leader")
-require("local-plugins")
-require("local-options")
-require("local-keymaps")
+require("config.leader")
+require("config.plugins")
+require("config.options")
+require("config.keymaps")
