@@ -14,4 +14,8 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {},
   },
+  {
+    "folke/which-key.nvim",
+    opts = {},
+  },
 }

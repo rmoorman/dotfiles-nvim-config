@@ -11,8 +11,15 @@ return {
       style = "warmer",
     },
   },
+  { "morhetz/gruvbox" },
   {
     "nvim-lualine/lualine.nvim",
-    opts = {},
+    opts = {
+      options = {
+        icons_enabled = false,
+        component_separators = "|",
+        section_separators = "",
+      },
+    },
   },
 }
