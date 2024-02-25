@@ -12,6 +12,15 @@ return {
     opts = {},
   },
   {
+    "NvChad/nvim-colorizer.lua",
+    main = "colorizer",
+    opts = {
+      user_default_options = {
+        mode = "virtualtext",
+      },
+    },
+  },
+  {
     -- Autocompletion
     "hrsh7th/nvim-cmp",
     dependencies = {

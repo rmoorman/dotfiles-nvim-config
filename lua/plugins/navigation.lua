@@ -18,4 +18,8 @@ return {
     "folke/which-key.nvim",
     opts = {},
   },
+  -- {
+  --   "rebelot/terminal.nvim",
+  --   opts = {},
+  -- },
 }

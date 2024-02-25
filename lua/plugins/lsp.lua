@@ -67,8 +67,8 @@ return {
       },
       -- js/ts
       {
-        install = { "tsserver" },
-        lsp = { tsserver = {} },
+        install = { "tsserver", "eslint-lsp" },
+        lsp = { tsserver = {}, eslint = {} },
       },
       -- ansible
       {
@@ -83,7 +83,6 @@ return {
       -- other null ls sources
       {
         null_ls = {
-          null_ls.builtins.diagnostics.eslint,
           null_ls.builtins.completion.spell,
           null_ls.builtins.code_actions.gitsigns,
         },

@@ -1,7 +1,7 @@
-local utils = {}
+local M = {}
 
 -- Return an opts factory function that falls back to the supplied opts
-utils.curried_opts = function(opts)
+function M.curried_opts(opts)
   local factory = function(given_opts)
     local result = {}
     for key, value in pairs(opts or {}) do
@@ -16,7 +16,7 @@ utils.curried_opts = function(opts)
 end
 
 -- Find the git root based on the current buffer's path, falling back to the CWD
-function utils.find_git_root()
+function M.find_git_root()
   local cwd = vim.fn.getcwd()
 
   -- Determine the current directory based on the current file, falling back to
@@ -39,4 +39,4 @@ function utils.find_git_root()
   return git_root
 end
 
-return utils
+return M

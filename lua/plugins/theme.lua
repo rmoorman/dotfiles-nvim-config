@@ -2,9 +2,7 @@ return {
   {
     "navarasu/onedark.nvim",
     priority = 1000,
-    opts = {
-      style = "warmer",
-    },
+    opts = { style = "warmer" },
   },
   {
     "nvim-lualine/lualine.nvim",
