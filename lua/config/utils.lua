@@ -15,6 +15,15 @@ function M.curried_opts(opts)
   return factory
 end
 
+-- Wrap a function call
+function M.wrap(callback, ...)
+  local args = table.pack(...)
+  return function()
+    local _, result = pcall(callback, table.unpack(args))
+    return result
+  end
+end
+
 -- Find the git root based on the current buffer's path, falling back to the CWD
 function M.find_git_root()
   local cwd = vim.fn.getcwd()

@@ -18,9 +18,21 @@ return {
       local telescope = require("telescope")
       local telescope_builtin = require("telescope.builtin")
       local telescope_themes = require("telescope.themes")
+      local telescope_actions = require("telescope.actions")
       local utils = require("config.utils")
 
       telescope.setup({
+        defaults = {
+          mappings = {
+            i = {
+              ["<C-d>"] = telescope_actions.delete_buffer,
+              ["<C-x>"] = false, -- telescope_actions.select_horizontal,
+              ["<C-v>"] = false, -- telescope_actions.select_vertical,
+              ["<C-h>"] = telescope_actions.select_horizontal,
+              ["<C-s>"] = telescope_actions.select_vertical,
+            },
+          },
+        },
         extensions = {
           ["ui-select"] = {
             telescope_themes.get_dropdown({}),

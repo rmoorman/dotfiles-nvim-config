@@ -14,9 +14,12 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {},
   },
+  { "folke/which-key.nvim", opts = {} },
+  { "akinsho/toggleterm.nvim", opts = {} },
   {
-    "folke/which-key.nvim",
-    opts = {},
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
   -- {
   --   "rebelot/terminal.nvim",

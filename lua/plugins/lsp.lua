@@ -50,15 +50,11 @@ return {
         null_ls = { null_ls.builtins.formatting.stylua },
       },
       -- elixir
-      {
-        install = { "elixirls" },
-        lsp = { elixirls = {} },
-      },
+      { install = { "elixirls" }, lsp = { elixirls = {} } },
+      -- gleam
+      { install = { "gleam" }, lsp = { gleam = {} } },
       -- golang
-      {
-        install = { "gopls" },
-        lsp = { gopls = {} },
-      },
+      { install = { "gopls" }, lsp = { gopls = {} } },
       -- python
       {
         install = { "pyright", "black" },
@@ -70,15 +66,15 @@ return {
         install = { "tsserver", "eslint-lsp" },
         lsp = { tsserver = {}, eslint = {} },
       },
+      -- HTML
+      {
+        install = { "html-lsp", "htmx-lsp" },
+        lsp = { html = {}, htmx = {} },
+      },
       -- ansible
       {
         install = { "ansiblels" },
         lsp = { ansiblels = {} },
-      },
-      -- HTML
-      {
-        install = { "html-lsp" },
-        lsp = { html = {} },
       },
       -- other null ls sources
       {
@@ -90,7 +86,7 @@ return {
     }
 
     neodev.setup()
-    mason.setup({ ui = { border = "rounded" }})
+    mason.setup({ ui = { border = "rounded" } })
     mason_lspconfig.setup()
 
     -- Install lsps and tools based on spec

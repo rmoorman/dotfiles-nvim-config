@@ -7,27 +7,6 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 --------------------------------------------------------------------------------
--- Load package manager and plugins
---------------------------------------------------------------------------------
-
--- Make sure lazy package manager is installed
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
-
--- Setup packages
-require("lazy").setup("plugins")
-
---------------------------------------------------------------------------------
 -- Options
 --------------------------------------------------------------------------------
 
@@ -57,9 +36,6 @@ vim.o.clipboard = "unnamedplus"
 -- Enable more colors
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
-
--- Set the colorscheme to use
-vim.cmd.colorscheme("onedark")
 
 -- Aids
 --------------------------------------------------------------------------------
@@ -112,6 +88,37 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.formatoptions:remove({ "r", "o" })
   end,
 })
+
+local colorscheme = "onedark"
+
+--------------------------------------------------------------------------------
+-- Load package manager and plugins
+--------------------------------------------------------------------------------
+
+-- Make sure lazy package manager is installed
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Setup packages
+local lazy_specs = "plugins"
+local lazy_opts = {
+  install = { colorscheme = { colorscheme } },
+  ui = { border = "rounded" },
+}
+require("lazy").setup(lazy_specs, lazy_opts)
+
+-- Set the colorscheme
+vim.cmd.colorscheme(colorscheme)
 
 --------------------------------------------------------------------------------
 -- Keymaps
@@ -191,9 +198,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- goto
     --map("n", "<leader>gd", vim.lsp.buf.definition, buf_opts({ desc = "goto definition" }))
-    map("n", "<leader>gd", telescope_builtin.lsp_definitions, buf_opts({ desc = "goto definition" }))
+
+    map("n", "<leader>gd", function()
+      telescope_builtin.lsp_definitions({ jump_type = "tab" })
+    end, buf_opts({ desc = "goto definition" }))
     map("n", "<leader>gD", vim.lsp.buf.declaration, buf_opts({ desc = "goto declaration" }))
-    map("n", "<leader>gi", telescope_builtin.lsp_implementations, buf_opts({ desc = "goto implementation" }))
+    map("n", "<leader>gi", function()
+      telescope_builtin.lsp_implementations({ jump_type = "tab" })
+    end, buf_opts({ desc = "goto implementation" }))
     map("n", "<leader>gr", telescope_builtin.lsp_references, buf_opts({ desc = "goto references" }))
 
     -- workspace management
